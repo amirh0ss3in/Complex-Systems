@@ -78,10 +78,12 @@ def plot_BD(l = 100, h = 250, particles = 10000, mid_bar = False, bar_height = 5
         wt.append(np.std(i,axis=0)[1])
     
     plt.plot(wt)
+    plt.xlabel(xlabel='Number of Particles', fontsize=12)
     plt.xscale('log')
     plt.yscale('log')
+    plt.tight_layout()
     plt.show()
-    
+
     XY = find_ones(surface)
     plt.plot(XY[:, 0], XY[:, 1], 'o', markersize = 2)
     plt.plot(maxs[-1][:,0], maxs[-1][:,1])
