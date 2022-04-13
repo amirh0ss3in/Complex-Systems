@@ -1,15 +1,19 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from tqdm import tqdm
+import itertools
+
 
 # Program for simulation of Ballistic Deposition.
 
 """ Authours:
         Amirhossein Rezaei
-        Paria Nouruzi Nik
+        Paria Norouzi Nik
         Ali Farhadi
         Amirhossein Sar Kaboudi
 
 """
+np.random.seed(42)
 
 def find_height(arr):
     """ finds the height of the surface """
@@ -18,19 +22,21 @@ def find_height(arr):
         if arr[y] == 1:
             return y
     else:
-        return -1
+        return 0
 
 
 def BD(surface, particles):
     """ performs the Ballistic Deposition algorithm """
     l, h = surface.shape
-    for _ in range(particles):
+    maxs = []
+    for _ in tqdm(range(particles)):
         pos = int(np.random.uniform(1, l - 1))
         arr_h1 = find_height(surface[pos - 1,:])
         arr_h2 = find_height(surface[pos, :])
         arr_h3 = find_height(surface[pos + 1, :])
         max_ = max(arr_h1, arr_h2, arr_h3)
-        if max_ < h-1:
+        
+        if max_ < h:
             if surface[pos,max_] == 1:
                 surface[pos, max_+1] = 1
                 continue
@@ -39,7 +45,14 @@ def BD(surface, particles):
                 continue
             else:
                 surface[pos, max_] = 1
-    return surface
+
+        max_i = []
+        for i in range(1,l-1):
+            max_i.append([i, find_height(surface[i, :])-1])
+        maxs.append(max_i)
+    maxs = np.array(maxs)
+
+    return surface , maxs 
 
   
 def find_ones(surface):
@@ -51,15 +64,27 @@ def find_ones(surface):
           XY.append([ix, iy])
     return np.array(XY)
 
-
-def plot_BD(l = 150, h = 200, particles = 10000, mid_bar = True, bar_height = 50):
+def plot_BD(l = 100, h = 250, particles = 10000, mid_bar = False, bar_height = 50):
     """ Plot surface using Ballistic Deposition """
+    
     surface = np.zeros([l, h])
+
     if mid_bar:
         surface[l//2, :bar_height] = 1
-    surface = BD(surface, particles)
+
+    surface , maxs = BD(surface, particles)
+    wt = []
+    for i in maxs:
+        wt.append(np.std(i,axis=0)[1])
+    
+    plt.plot(wt)
+    plt.xscale('log')
+    plt.yscale('log')
+    plt.show()
+    
     XY = find_ones(surface)
     plt.plot(XY[:, 0], XY[:, 1], 'o', markersize = 2)
+    plt.plot(maxs[-1][:,0], maxs[-1][:,1])
     plt.xlim([0, l])
     plt.ylim([0, h])
     plt.gca().set_aspect('equal')
