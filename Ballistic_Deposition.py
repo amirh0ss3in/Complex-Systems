@@ -21,7 +21,7 @@ def find_height(arr):
         if arr[y] == 1:
             return y
     else:
-        return -1
+        return 0
 
 
 def BD(surface, particles):
