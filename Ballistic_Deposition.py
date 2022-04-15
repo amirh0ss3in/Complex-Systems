@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from tqdm import tqdm
-import itertools
 
 
 # Program for simulation of Ballistic Deposition.
@@ -22,7 +21,7 @@ def find_height(arr):
         if arr[y] == 1:
             return y
     else:
-        return 0
+        return -1
 
 
 def BD(surface, particles):
@@ -94,7 +93,8 @@ def plot_BD(l = 100, h = 250, particles = 10000, mid_bar = False, bar_height = 5
 
 
 def main():
-    plot_BD()
+    plot_BD(l = 100, h = 250, particles = 10000, mid_bar = False, bar_height = 50)
+    plot_BD(l = 100, h = 350, particles = 10000, mid_bar = True, bar_height = 50)
 
 
 if __name__ == '__main__':
