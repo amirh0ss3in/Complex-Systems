@@ -15,7 +15,7 @@ def find_height(arr):
     h = len(arr)
     for y in range(h - 1, -1, -1):
         if arr[y] == 1:
-            return y+1
+            return y + 1
     else:
         return 0
 
