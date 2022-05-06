@@ -98,7 +98,7 @@ def plot_RRD(l, h, particles):
 
 
 def main():
-    plot_RRD(l = 50, h = 1000, particles = 20000)
+    plot_RRD(l = 100, h = 500, particles = 20000)
 
 if __name__ == '__main__':
     main()
