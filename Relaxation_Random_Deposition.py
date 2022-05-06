@@ -90,6 +90,7 @@ def plot_RRD(l, h, particles):
 
     XY = find_ones(surface)
     plt.plot(XY[:, 0], XY[:, 1], 'o', markersize = 2)
+    plt.plot(maxs[-1][:,0], maxs[-1][:,1])
     plt.xlim([0, l]) 
     plt.ylim([0, h])
     plt.gca().set_aspect('equal')
