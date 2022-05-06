@@ -21,7 +21,7 @@ def find_height(arr):
 
 
 def RD(surface, particles):
-    """ performs the Ballistic Deposition algorithm """
+    """ performs the Random Deposition algorithm """
     l, h = surface.shape
     maxs = []
     for _ in tqdm(range(particles)):
@@ -57,7 +57,7 @@ def find_ones(surface):
     return np.array(XY)
 
 def plot_RD(l = 100, h = 150, particles = 10000, mid_bar = False, bar_height = 50):
-    """ Plot surface using Ballistic Deposition """
+    """ Plot surface using Random Deposition """
     
     surface = np.zeros([l, h])
 
@@ -69,12 +69,12 @@ def plot_RD(l = 100, h = 150, particles = 10000, mid_bar = False, bar_height = 5
     for i in maxs:
         wt.append(np.std(i,axis=0)[1])
     
-    # plt.plot(wt)
-    # plt.xlabel(xlabel='Number of Particles', fontsize=12)
-    # plt.xscale('log')
-    # plt.yscale('log')
-    # plt.tight_layout()
-    # plt.show()
+    plt.plot(wt)
+    plt.xlabel(xlabel='Number of Particles', fontsize=12)
+    plt.xscale('log')
+    plt.yscale('log')
+    plt.tight_layout()
+    plt.show()
 
     XY = find_ones(surface)
     plt.plot(XY[:, 0], XY[:, 1], 'o', markersize = 2)
