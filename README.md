@@ -17,3 +17,8 @@ A repository of Complex Systems ideas and codes.
    <img src="Random Deposition Results/NP.svg" width="350" title="hover text">
    <img src="Random Deposition Results/Surface.svg" width="350" title="hover text">
 
+## Simulation of Relaxation Random Deposition
+   <p align="middle">
+   <img src="Relaxation Random Deposition Results/NP.svg" width="350" title="hover text">
+   <img src="Relaxation Random Deposition Results/Surface.svg" width="350" title="hover text">
+
