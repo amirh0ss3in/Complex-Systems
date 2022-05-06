@@ -86,8 +86,7 @@ def plot_RD(l = 100, h = 150, particles = 10000, mid_bar = False, bar_height = 5
 
 
 def main():
-    plot_RD(l = 100, h = 200, particles = 10000, mid_bar = False, bar_height = 50)
-    # plot_RD(l = 100, h = 350, particles = 10000, mid_bar = True, bar_height = 50)
+    plot_RD(l = 100, h = 150, particles = 10000, mid_bar = False, bar_height = 50)
 
 
 if __name__ == '__main__':
