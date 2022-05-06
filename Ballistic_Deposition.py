@@ -19,7 +19,7 @@ def find_height(arr):
     h = len(arr)
     for y in range(h - 1, -1, -1):
         if arr[y] == 1:
-            return y
+            return y+1
     else:
         return 0
 
@@ -93,8 +93,8 @@ def plot_BD(l = 100, h = 250, particles = 10000, mid_bar = False, bar_height = 5
 
 
 def main():
-    plot_BD(l = 100, h = 250, particles = 10000, mid_bar = False, bar_height = 50)
-    plot_BD(l = 100, h = 350, particles = 10000, mid_bar = True, bar_height = 50)
+    plot_BD(l = 100, h = 500, particles = 10000, mid_bar = False, bar_height = 50)
+    plot_BD(l = 100, h = 550, particles = 10000, mid_bar = True, bar_height = 50)
 
 
 if __name__ == '__main__':
