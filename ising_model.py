@@ -1,13 +1,18 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from tqdm import tqdm
+import os
 
 """ The two-dimensional ISING model. """
 
+tqdm.monitor_interval = 0
+cwd = os.path.dirname(os.path.abspath(__file__))+'\\'
+
 np.random.seed(42)
 
-def show_lattice(lattice):
+def show_lattice(lattice, save_path):
     plt.imshow(lattice, cmap='Blues')
+    plt.save(save_path)
     plt.show()
 
 def calcEnergy(lattice):
@@ -27,42 +32,47 @@ def ISING(L, T, MCmoves):
     Magnetization = 0
 
     spin_lattice = np.random.choice([-1, 1], size=(L, L))
-    Energy = calcEnergy(spin_lattice)
-    Energy_c = 0
-    ee = 0
-    for MCmove in tqdm(range(1, MCmoves)):
+    initEnergy = calcEnergy(spin_lattice)
+    Energy = 0
+    
+    # E_set = {0, 4, 8, -8, -4}
+    exp_E_T = {0:np.exp(0), 2:np.exp(-4/T), 4:np.exp(-8/T), -4:np.exp(8/T) , -2:np.exp(4/T)}
+
+    for MCmove in tqdm(range(MCmoves)):
         i, j = np.random.randint(0, L, 2)
         E = spin_lattice[i, j] * (spin_lattice[(i + 1) % L, j] + spin_lattice[i, (j + 1) % L] + spin_lattice[i, (j - 1) % L] + spin_lattice[(i - 1) % L, j])
-        if np.random.rand() < min(1, np.exp(- 2 * E / T)):
+
+        if np.random.rand() < min(1, exp_E_T[E]):
             spin_lattice[i, j] = - spin_lattice[i, j]
 
         if spin_lattice[(i + 1) % L, j] == spin_lattice[i, (j + 1) % L] == spin_lattice[i, (j - 1) % L] == spin_lattice[(i - 1) % L, j]:
-            Energy -= E
-            Energy_c += E
+            initEnergy -= E
+            Energy += E
             
         else:
-            Energy -= E/2
-            Energy_c += E
+            initEnergy -= E/2
+            Energy += E
         
-    return spin_lattice , - Energy_c / (MCmoves)
+    return spin_lattice , - Energy / (MCmoves)
 
 def main():
     L_list = [32, 64, 128, 256]
-    MCmoves_list = [100_000, 500_000, 1_000_000, 5_000_000]
-    # spin_lattice, Energy = ISING(L = L_list[0], T = 1.5, MCmoves = 20_000)
-    # show_lattice(spin_lattice)
+    MCmoves_list = [1_000_000, 1_000_000, 2_000_000, 5_000_000]
+    save_path = cwd + 'ISING Model Results/'
+    for i in tqdm(range(len(L_list))):
+        Energy_list = []
+        temp = np.linspace(1.53, 3.28, 64)
+        
+        for t in tqdm(temp):
+            spin_lattice, Energy = ISING(L = L_list[i], T = t, MCmoves = MCmoves_list[i])
+            Energy_list.append(Energy)
+        
+        plt.plot(temp, Energy_list, 'o')
+        # plt.show()
+        plt.savefig(save_path + 'E_T_' + str(L_list[i]) + 'x'+ str(L_list[i]) + '.svg')
+        plt.close()
 
-    # for i in range(len(L_list)):
-    #     spin_lattice = ISING(L = L_list[i], T = 1.5, MCmoves = MCmoves_list[i])
-    #     show_lattice(spin_lattice)
-    
-    Energy_list = []
-    temp = np.linspace(1.53, 3.28, 32)
-    for t in tqdm(temp):
-        spin_lattice, Energy = ISING(L = 64, T = t, MCmoves = 1_000_000)
-        Energy_list.append(Energy)
-    plt.plot(temp, Energy_list, 'o')
-    plt.show()
+        break # only run for one lattice size
 
 if __name__ == '__main__':
     main()
