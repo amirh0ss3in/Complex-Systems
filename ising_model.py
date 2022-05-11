@@ -44,8 +44,6 @@ def ISING(L, T, MCmoves):
             Energy -= E/2
             Energy_c += E
         
-        # ee += calcEnergy(spin_lattice)
-        # print((ee/L**2)/Energy_c)
     return spin_lattice , - Energy_c / (MCmoves)
 
 def main():
