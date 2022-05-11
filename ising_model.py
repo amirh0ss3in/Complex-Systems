@@ -22,8 +22,8 @@ def ISING(L, T, MCmoves):
     return spin_lattice 
 
 def main():
-    L_list = [32, 64, 128, 256, 512]
-    MCmoves_list = [100_000, 500_000, 1_000_000, 5_000_000, 10_000_000]
+    L_list = [32, 64, 128, 256]
+    MCmoves_list = [100_000, 500_000, 1_000_000, 5_000_000]
 
     for i in range(len(L_list)):
         spin_lattice = ISING(L = L_list[i], T = 1.5, MCmoves = MCmoves_list[i])
