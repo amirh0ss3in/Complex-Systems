@@ -11,9 +11,10 @@ cwd = os.path.dirname(os.path.abspath(__file__))+'\\'
 np.random.seed(42)
 
 
-def show_lattice(lattice, save_path):
+def show_lattice(lattice, save_path = None):
     plt.imshow(lattice, cmap='Blues')
-    plt.save(save_path)
+    if save_path is not None:
+        plt.savefig(save_path)
     plt.show()
 
 
