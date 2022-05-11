@@ -10,10 +10,12 @@ cwd = os.path.dirname(os.path.abspath(__file__))+'\\'
 
 np.random.seed(42)
 
+
 def show_lattice(lattice, save_path):
     plt.imshow(lattice, cmap='Blues')
     plt.save(save_path)
     plt.show()
+
 
 def calcEnergy(lattice):
     '''
@@ -27,6 +29,7 @@ def calcEnergy(lattice):
             nb = lattice[(i+1)%L, j] + lattice[i,(j+1)%L] + lattice[(i-1)%L, j] + lattice[i,(j-1)%L]
             energy += -nb*S
     return energy
+
 
 def ISING(L, T, MCmoves):
     Magnetization = 0
@@ -55,6 +58,7 @@ def ISING(L, T, MCmoves):
         
     return spin_lattice , - Energy / (MCmoves)
 
+
 def main():
     L_list = [32, 64, 128, 256]
     MCmoves_list = [1_000_000, 1_000_000, 2_000_000, 5_000_000]
@@ -72,7 +76,6 @@ def main():
         plt.savefig(save_path + 'E_T_' + str(L_list[i]) + 'x'+ str(L_list[i]) + '.svg')
         plt.close()
 
-        break # only run for one lattice size
 
 if __name__ == '__main__':
     main()

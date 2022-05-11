@@ -1,5 +1,6 @@
 Without Hash Table:
-
 	Python 		22.74s/it
-	JIT 		26.62s/it
-	Parallel JIT   	27.09s/it
+
+With Hash Table
+	Python		17.61s/it
+
