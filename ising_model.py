@@ -4,7 +4,6 @@ from tqdm import tqdm
 
 """ The two-dimensional ISING model. """
 
-np.random.seed(42)
 
 def show_lattice(lattice):
     plt.imshow(lattice, cmap='Blues')
@@ -20,10 +19,10 @@ def ISING(L, T, MCmoves):
         if np.random.rand() < min(1, np.exp(- E / T)):
             spin_lattice[i, j] = - spin_lattice[i, j]
 
-    return spin_lattice
+    return spin_lattice 
 
 def main():
-    spin_lattice = ISING(L = 128, T = 1.5, MCmoves = 1_000_000)
+    spin_lattice = ISING(L = 256, T = 1.5, MCmoves = 1_000_000)
     show_lattice(spin_lattice)
 
 if __name__ == '__main__':
