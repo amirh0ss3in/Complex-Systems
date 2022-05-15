@@ -2,6 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 import os
+import numba as nb
+import random
+import math
 
 """ The two-dimensional ISING model. """
 
@@ -17,7 +20,7 @@ def show_lattice(lattice, save_path = None):
         plt.savefig(save_path)
     plt.show()
 
-
+@nb.njit
 def calcEnergy(lattice):
     '''
     Energy of a given lattice
@@ -31,25 +34,20 @@ def calcEnergy(lattice):
             energy += -nb*S
     return energy
 
-
+@nb.njit
 def ISING(L, T, MCmoves):
     Magnetization = 0
-    spin_lattice = np.random.choice([1], size=(L, L))
+    spin_lattice = np.ones(shape=(L, L))
     initEnergy = calcEnergy(spin_lattice)
     Energy = 0
-    
     initMagnetization = np.sum(spin_lattice)
-    # E_set = {0, 4, 8, -8, -4}
-    exp_E_T = {0:np.exp(0), 2:np.exp(-4/T), 4:np.exp(-8/T), -4:np.exp(8/T) , -2:np.exp(4/T)}
 
-    for MCmove in tqdm(range(MCmoves)):
+    for MCmove in range(MCmoves):
         i, j = np.random.randint(0, L, 2)
         E = spin_lattice[i, j] * (spin_lattice[(i + 1) % L, j] + spin_lattice[i, (j + 1) % L] + spin_lattice[i, (j - 1) % L] + spin_lattice[(i - 1) % L, j])
-        # Magnetization +=  initMagnetization
         Magnetization += np.sum(spin_lattice)
-        if np.random.rand() < min(1, exp_E_T[E]):
+        if np.random.rand() < min(1, math.exp(-2*E/T)):
             spin_lattice[i, j] = - spin_lattice[i, j]
-            # Magnetization += 2 * spin_lattice[i, j]
 
         if spin_lattice[(i + 1) % L, j] == spin_lattice[i, (j + 1) % L] == spin_lattice[i, (j - 1) % L] == spin_lattice[(i - 1) % L, j]:
             initEnergy -= E
@@ -64,7 +62,7 @@ def ISING(L, T, MCmoves):
 
 def main():
     L_list = [32, 64, 128, 256]
-    MCmoves_list = [500_000, 1_000_000, 2_000_000, 5_000_000]
+    MCmoves_list = [500_000, 1_000_000, 1_000_000, 1_000_000]
     save_path = cwd + 'ISING Model Results/'
     for i in tqdm(range(len(L_list))):
         Energy_list = []
