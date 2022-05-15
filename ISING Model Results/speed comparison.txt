@@ -1,6 +1,0 @@
-Without Hash Table:
-	Python 		22.74s/it
-
-With Hash Table
-	Python		17.61s/it
-
