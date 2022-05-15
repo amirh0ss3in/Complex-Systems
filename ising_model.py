@@ -3,8 +3,9 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm
 import os
 import numba as nb
-import random
 import math
+# from numba import types
+# from numba.typed import Dict
 
 """ The two-dimensional ISING model. """
 
@@ -41,6 +42,12 @@ def ISING(L, T, MCmoves):
     initEnergy = calcEnergy(spin_lattice)
     Energy = 0
     initMagnetization = np.sum(spin_lattice)
+
+    # Dict 
+    # dict_param1 = Dict.empty(
+    # key_type=types.int64,
+    # value_type=types.float64,
+    # )
 
     for MCmove in range(MCmoves):
         i, j = np.random.randint(0, L, 2)
