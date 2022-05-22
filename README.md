@@ -21,4 +21,8 @@ A repository of Complex Systems ideas and codes.
    <p align="middle">
    <img src="Relaxation Random Deposition Results/NP.svg" width="350" title="hover text">
    <img src="Relaxation Random Deposition Results/Surface.svg" width="350" title="hover text">
+      
+## Simulation of the ISING Model
+   <p align="middle">
+   <img src="ISING Model Results/C_T_128x128.svg" width="350" title="hover text">
 
