@@ -5,7 +5,11 @@ import os
 import numba as nb
 import math
 
-""" The two-dimensional ISING model. """
+""" The two-dimensional ISING model. 
+    By 
+        Amirhossein Rezaei
+
+"""
 
 tqdm.monitor_interval = 0
 cwd = os.path.dirname(os.path.abspath(__file__))+'\\'
