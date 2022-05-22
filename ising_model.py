@@ -4,8 +4,6 @@ from tqdm import tqdm
 import os
 import numba as nb
 import math
-# from numba import types
-# from numba.typed import Dict
 
 """ The two-dimensional ISING model. """
 
