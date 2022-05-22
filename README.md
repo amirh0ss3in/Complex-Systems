@@ -25,20 +25,29 @@ A repository of Complex Systems ideas and codes.
 ## Simulation of the ISING Model
    <p align="middle">
    
-### Simulation of the ISING Model
+### Lattice Size: 32x32 
    <p align="middle">
+   <img src="ISING Model Results/E_T_32x32.svg" width="350" title="hover text">
    <img src="ISING Model Results/C_T_32x32.svg" width="350" title="hover text">
+   <img src="ISING Model Results/M_T_32x32.svg" width="350" title="hover text">
 
-### Simulation of the ISING Model
+
+### Lattice Size: 64x64
    <p align="middle">
+   <img src="ISING Model Results/E_T_64x64.svg" width="350" title="hover text">
    <img src="ISING Model Results/C_T_64x64.svg" width="350" title="hover text">
+   <img src="ISING Model Results/M_T_64x64.svg" width="350" title="hover text">
 
-### Simulation of the ISING Model
+### Lattice Size: 128x128
    <p align="middle">
-    <img src="ISING Model Results/C_T_128x128.svg" width="350" title="hover text">
-
-### Simulation of the ISING Model
+   <img src="ISING Model Results/E_T_128x128.svg" width="350" title="hover text">
+   <img src="ISING Model Results/C_T_128x128.svg" width="350" title="hover text">
+   <img src="ISING Model Results/M_T_128x128.svg" width="350" title="hover text">
+      
+### Lattice Size: 256x256
    <p align="middle">
+   <img src="ISING Model Results/E_T_256x256.svg" width="350" title="hover text">
    <img src="ISING Model Results/C_T_256x256.svg" width="350" title="hover text">
+   <img src="ISING Model Results/M_T_256x256.svg" width="350" title="hover text">
       
 
