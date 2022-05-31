@@ -7,6 +7,7 @@ from tqdm import tqdm
 """ Authours:
         Paria Norouzi Nik
         Amirhossein Rezaei
+        Amirhossein Sarkaboodi
 """
 np.random.seed(42)
 
