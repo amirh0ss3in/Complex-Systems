@@ -20,7 +20,7 @@ def find_height(arr):
     h = len(arr)
     for y in range(h - 1, -1, -1):
         if arr[y] == 1:
-            return y + 1
+            return y
     else:
         return 0
 
@@ -48,7 +48,7 @@ def BD(surface, particles):
 
         max_i = []
         for i in range(1,l-1):
-            max_i.append([i, find_height(surface[i, :])-1])
+            max_i.append([i, find_height(surface[i, :])])
         maxs.append(max_i)
     maxs = np.array(maxs)
 
