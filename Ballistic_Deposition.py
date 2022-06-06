@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from tqdm import tqdm
-
+import numba as nb
 
 # Program for simulation of Ballistic Deposition.
 
@@ -14,6 +14,7 @@ from tqdm import tqdm
 """
 np.random.seed(42)
 
+@nb.njit()
 def find_height(arr):
     """ finds the height of the surface """
     h = len(arr)
@@ -23,12 +24,12 @@ def find_height(arr):
     else:
         return 0
 
-
+@nb.njit()
 def BD(surface, particles):
     """ performs the Ballistic Deposition algorithm """
     l, h = surface.shape
     maxs = []
-    for _ in tqdm(range(particles)):
+    for _ in range(particles):
         pos = int(np.random.uniform(1, l - 1))
         arr_h1 = find_height(surface[pos - 1,:])
         arr_h2 = find_height(surface[pos, :])
