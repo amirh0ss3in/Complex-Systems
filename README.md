@@ -51,3 +51,5 @@ A repository of Complex Systems ideas and codes.
    <img src="ISING Model Results/M_T_256x256.svg" width="350" title="hover text">
       
 
+## Optimized version of ISING model, using fast Numba JIT compiler
+   <p align="middle">
