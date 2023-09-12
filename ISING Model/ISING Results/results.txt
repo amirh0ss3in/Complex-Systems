@@ -1,0 +1,19 @@
+lattice size : 32x32    
+    
+    burnin = 8 * 10**4
+    mcSteps = 8 * 10**4
+    Simulation time = 58.609 seconds
+
+
+lattice size : 64x64    
+    
+    burnin = 10**5
+    mcSteps = 10**5
+    Simulation time = 287.379 seconds
+
+
+lattice size : 128x128    
+    
+    burnin = 2 * 10**5
+    mcSteps = 2 * 10**5
+    Simulation time = 2382.19 seconds
