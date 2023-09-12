@@ -53,3 +53,5 @@ A repository of Complex Systems ideas and codes.
 
 ## Optimized version of ISING model, using fast Numba JIT compiler
    <p align="middle">
+   <img src="ISING Model/ISING_64x64.png" width="350" title="hover text">
+
